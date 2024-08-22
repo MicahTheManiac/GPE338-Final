@@ -19,10 +19,17 @@ public class PlayerMovement : MonoBehaviour
     public float groundDistance;
     public LayerMask groundMask;
 
+    public Vector3 startingPosition;
+
     // Private Vars
     private Vector3 _velocity;
     private bool _isGrounded;
     private float _speedMultiplier = 1f;
+
+    void Start()
+    {
+        startingPosition = transform.position;
+    }
 
     // Update is called once per frame
     void Update()
@@ -31,7 +38,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (_isGrounded && _velocity.y < 0)
         {
-            _velocity.y = 0f; // Brackeys Magic Number
+            _velocity.y = 0f;
         }
 
         float x = Input.GetAxis("Horizontal");
@@ -51,7 +58,7 @@ public class PlayerMovement : MonoBehaviour
         // Check if we are Holding Shift
         if (Input.GetButton("Fire3"))
         {
-            _speedMultiplier = 2f;
+            _speedMultiplier = 1.5f;
         }
         else
         {
@@ -62,5 +69,13 @@ public class PlayerMovement : MonoBehaviour
         _velocity.y += gravity * Time.deltaTime;
 
         controller.Move(_velocity * Time.deltaTime);
+
+        // Check if we are falling out of the world
+        if (transform.position.y <= -64f)
+        {
+            _velocity.y = 0f;
+            transform.position = startingPosition;
+
+        }
     }
 }

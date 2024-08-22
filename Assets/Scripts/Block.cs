@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class Block : MonoBehaviour
 {
+    public bool lockMaterial = false;
     public Material defaultMaterial;
     public Material[] materials;
 
     // Start is called before the first frame update
     void Start()
     {
-        GetMaterial();
+        if (!lockMaterial)
+        {
+            GetMaterial();
+        }
     }
 
     public void GetMaterial()

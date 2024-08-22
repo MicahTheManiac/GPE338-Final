@@ -59,7 +59,7 @@ Transform:
   m_GameObject: {fileID: 5498709376435678703}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.685, z: 0}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -96,7 +96,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: 0.1
   far clip plane: 1000
   field of view: 90
   orthographic: 0
@@ -149,7 +149,6 @@ GameObject:
   - component: {fileID: 3234836220371877285}
   - component: {fileID: 451738291976658624}
   - component: {fileID: 5138021114254057378}
-  - component: {fileID: 169164298033918813}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: Untagged
@@ -222,29 +221,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &169164298033918813
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6864192822734183561}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8740081128622998313
 GameObject:
   m_ObjectHideFlags: 0
@@ -301,8 +277,8 @@ CharacterController:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Height: 2
-  m_Radius: 0.7
+  m_Height: 1.8
+  m_Radius: 0.4
   m_SlopeLimit: 45
   m_StepOffset: 0
   m_SkinWidth: 0.08
@@ -321,14 +297,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 8885198260070065910}
-  speed: 9
+  speed: 7.5
   gravity: -19.62
   jumpHeight: 1
   groundCheck: {fileID: 8603215269757163315}
-  groundDistance: 0.5
+  groundDistance: 0.4
   groundMask:
     serializedVersion: 2
     m_Bits: 128
+  startingPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &-2244855988978746199
 MonoBehaviour:
   m_ObjectHideFlags: 0
