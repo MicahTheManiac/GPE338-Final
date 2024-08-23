@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Replay : MonoBehaviour
+public class Replay : MonoBehaviour, IReplay
 {
     // Public
     public KeyCode keyRecord = KeyCode.I;
@@ -12,9 +12,9 @@ public class Replay : MonoBehaviour
     public GameObject replayObject;
 
     // Private
-    float _recordInterval = 0.01f;
-    List<Vector3> _cache;
-    bool _isRecording = false;
+    private float _recordInterval = 0.01f;
+    private List<Vector3> _cache;
+    private bool _isRecording = false;
 
     // Start is called before the first frame update
     void Start()
@@ -26,22 +26,73 @@ public class Replay : MonoBehaviour
     void Update()
     {
         // Start Recording
-        if (Input.GetKeyDown(keyRecord) && !_isRecording)
+        if (Input.GetKeyDown(keyRecord))
+        {
+            ReplayStartRecording(true);
+        }
+        // Stop Recording
+        if (Input.GetKeyDown(keyStop))
+        {
+            ReplayStartRecording(false);
+        }
+        // Play Recording
+        if (Input.GetKeyDown(keyPlay))
+        {
+            ReplayPlayback(true);
+        }
+
+    }
+
+    // ReplayStartRecording() -- Public Function to be accessed by other Scripts
+    public void ReplayStartRecording(bool start)
+    {
+        if (start == true && _isRecording == false)
         {
             _isRecording = true;
             StartCoroutine(RecordReplay());
         }
-        // Stop Recording
-        if (Input.GetKeyDown(keyStop) && _isRecording)
+        else if (start == false && _isRecording == true)
         {
             _isRecording = false;
         }
-        // Play Recording
-        if (Input.GetKeyDown(keyPlay) & !_isRecording)
+    }
+
+    // ReplayPlayback() -- Public Function to be accessed by other Scripts
+    public void ReplayPlayback(bool start)
+    {
+        if (start && !_isRecording)
         {
             StartCoroutine(PlayReplay());
         }
+        else if (!start && !_isRecording)
+        {
+            StopCoroutine(PlayReplay());
+        }
+        else
+        {
+            Debug.Log("Recording in Progress!");
+        }
+    }
 
+    // ReplayGetSeconds() -- Public Function to be accessed by other Scripts
+    public float ReplayGetSeconds()
+    {
+        if (!_isRecording)
+        {
+            if (_cache != null)
+            {
+                return (float)_cache.Count * _recordInterval;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+        else
+        {
+            Debug.Log("Still Recording. Returning 10s.");
+            return 10f;
+        }
     }
 
     IEnumerator RecordReplay()

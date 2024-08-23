@@ -7,7 +7,7 @@ using UnityEngine;
  *  Reference: Brackeys - https://www.youtube.com/watch?v=_QajrabyTJc
  */
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : MonoBehaviour, IPlayerMovement
 {
     public CharacterController controller;
 
@@ -19,7 +19,7 @@ public class PlayerMovement : MonoBehaviour
     public float groundDistance;
     public LayerMask groundMask;
 
-    public Vector3 startingPosition;
+    public Vector3 startingPosition {  get; set; }
 
     // Private Vars
     private Vector3 _velocity;
@@ -73,9 +73,28 @@ public class PlayerMovement : MonoBehaviour
         // Check if we are falling out of the world
         if (transform.position.y <= -64f)
         {
-            _velocity.y = 0f;
-            transform.position = startingPosition;
-
+            GoToStartingPosition();
         }
+    }
+
+    public void GoToStartingPosition()
+    {
+        // We will Disable here to avoid doing it in other scripts
+        this.enabled = false;
+
+        _velocity.y = 0f;
+        transform.position = startingPosition;
+        // Debug.Log("I am being Called!");
+
+        Invoke("EnableMe", 0.1f);
+    }
+
+    /*  ENABLE ME FUNCTION
+     * All this because I cannot reset the player's position without disabling this
+     * Component! What the heck?
+     */
+    private void EnableMe()
+    {
+        if (!this.enabled) { this.enabled = true; }
     }
 }

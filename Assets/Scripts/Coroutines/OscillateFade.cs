@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class OscilateFade : MonoBehaviour
 {
-    float baseAlpha = 0.9f;
+    float baseAlpha = 0.8f;
 
     // Start is called before the first frame update
     void Start()
@@ -21,7 +21,7 @@ public class OscilateFade : MonoBehaviour
         {
             float animation = baseAlpha + Mathf.Sin(Time.time * 2f);
 
-            animation = Mathf.Clamp01(animation);
+            animation = Mathf.Clamp(animation, 0.3f, 1);
 
             c.a = animation;
             renderer.material.color = c;

@@ -1,30 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
-using static UnityEngine.UI.GridLayoutGroup;
 
-public class Bullet : MonoBehaviour, IBullet
+public class Bullet : Trigger, IBullet
 {
     public float speed = 8f;
     public float lifetime = 5f;
-    public float force = 500000f;
 
     private float _timer = 0f;
-    // Update is called once per frame
-    void Update()
+
+    // Start is called before the first frame update
+    public override void Start()
+    {
+        
+    }
+
+    private void Update()
     {
         _timer += Time.deltaTime;
 
-        Move();
-
         // Deactivate after Lifetime
-        if (_timer >= lifetime)
+        if (_timer >= 8f)
         {
             _timer = 0f;
             gameObject.SetActive(false);
         }
+
+        Move();
     }
 
     private void Move()
@@ -34,15 +36,21 @@ public class Bullet : MonoBehaviour, IBullet
     }
 
     // Collision Detection
-    public void OnTriggerEnter(Collider other)
+    public override void OnTriggerEnter(Collider other)
     {
         Block block = other.GetComponent<Block>();
         Dispenser dispenser = other.GetComponent<Dispenser>();
-        PlayerMovement playerMover = other.GetComponent<PlayerMovement>();
+        PlayerMovement playerMove = other.GetComponent<PlayerMovement>();
 
         if (block != null && dispenser == null)
         {
             gameObject.SetActive(false);
+        }
+
+        // Only Disable Movement & Set Pos
+        if (playerMove != null)
+        {
+            playerMove.GoToStartingPosition();
         }
     }
 }

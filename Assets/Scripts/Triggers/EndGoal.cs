@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EndGoal : MonoBehaviour
+/* DEPRECIATED */
+
+public class EndGoal : Trigger
 {
     private LevelManager _levelManager;
 
-    private void Start()
+    public override void Start()
     {
         if (LevelManager.instance != null)
         {
@@ -15,14 +17,16 @@ public class EndGoal : MonoBehaviour
     }
 
     // Collision Detection
-    public void OnTriggerEnter(Collider other)
+    public override void OnTriggerEnter(Collider other)
     {
         // Assume an Object with PlayerMovement is the Player
         PlayerMovement player = other.GetComponent<PlayerMovement>();
 
-        if (player != null)
+        if (player != null && _levelManager != null)
         {
             _levelManager.LoadNextScene();
         }
     }
 }
+
+/* DEPRECIATED */

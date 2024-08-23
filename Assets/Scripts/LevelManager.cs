@@ -56,11 +56,11 @@ public class LevelManager : MonoBehaviour
         LoadProgress();
 
         // Load Scene
-        LoadScene("SampleScene");
+        // LoadScene("SampleScene");
     }
 
     // Load Scene -- Only Function that should Access SceneManager.LoadScene()
-    private void LoadScene(string name)
+    public void LoadScene(string name)
     {
         for (int i = 0; i < sceneNames.Count; i++)
         {

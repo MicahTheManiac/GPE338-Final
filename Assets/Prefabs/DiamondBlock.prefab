@@ -16,7 +16,8 @@ GameObject:
   - component: {fileID: 3055810684185160458}
   - component: {fileID: 4662749458115061863}
   - component: {fileID: 385107129843545312}
-  - component: {fileID: 4996312351412333230}
+  - component: {fileID: 8642879723617032135}
+  - component: {fileID: 5917358842306296744}
   m_Layer: 0
   m_Name: DiamondBlock
   m_TagString: Untagged
@@ -177,7 +178,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationSpeed: 20
---- !u!114 &4996312351412333230
+--- !u!114 &8642879723617032135
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -186,6 +187,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 1521671133210093663}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2a82c05078c3f464ba520b895700a14c, type: 3}
+  m_Script: {fileID: 11500000, guid: d55fa2ac7fc3fcd48b8ffedf65dded63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  idDiamondBlock: 1
+--- !u!114 &5917358842306296744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1521671133210093663}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db94b5c5cdf9ec241b1fa052908dda2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isEndGoal: 1
+  viewPoint: {fileID: 0}
