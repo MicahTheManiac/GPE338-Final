@@ -20,7 +20,7 @@ public class Bullet : Trigger, IBullet
         _timer += Time.deltaTime;
 
         // Deactivate after Lifetime
-        if (_timer >= 8f)
+        if (_timer >= lifetime)
         {
             _timer = 0f;
             gameObject.SetActive(false);

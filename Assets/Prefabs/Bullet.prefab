@@ -119,7 +119,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 266593a1ea6cd324e929d98ca8fedc61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  viewPoint: {fileID: 4849353895800986346}
+  speed: 15
+  lifetime: 1
 --- !u!54 &1933558076212156096
 Rigidbody:
   m_ObjectHideFlags: 0

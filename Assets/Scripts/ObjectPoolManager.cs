@@ -71,7 +71,7 @@ public class ObjectPoolManager : MonoBehaviour
         {
             // If the object is Inactive
             if (!obj.activeInHierarchy)
-            {
+             {
                 // Set Values
                 obj.name = prefab.name;
 
@@ -88,16 +88,8 @@ public class ObjectPoolManager : MonoBehaviour
             }
         }
 
-        // Add a new Object to Pool to Accomodate
-        GameObject newObject = new GameObject();
-        newObject.name = prefab.name;
-        Transform newObjectTransform = newObject.GetComponent<Transform>();
-        newObjectTransform.position = position;
-        newObjectTransform.rotation = rotation;
-        objects.Add(newObject);
-
-        // Return
-        return newObject;
+        // Retun Null
+        return null;
 
     }
 

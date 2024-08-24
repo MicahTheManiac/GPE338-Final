@@ -14,12 +14,14 @@ public class PlayerMovement : MonoBehaviour, IPlayerMovement
     public float speed = 12f;
     public float gravity = -9.81f;
     public float jumpHeight = 3f;
+    public float respawnDepth = -32f;
 
     public Transform groundCheck;
     public float groundDistance;
     public LayerMask groundMask;
 
     public Vector3 startingPosition {  get; set; }
+    public Quaternion startingRotation { get; set; }
 
     // Private Vars
     private Vector3 _velocity;
@@ -29,6 +31,7 @@ public class PlayerMovement : MonoBehaviour, IPlayerMovement
     void Start()
     {
         startingPosition = transform.position;
+        startingRotation = transform.rotation;
     }
 
     // Update is called once per frame
@@ -71,7 +74,7 @@ public class PlayerMovement : MonoBehaviour, IPlayerMovement
         controller.Move(_velocity * Time.deltaTime);
 
         // Check if we are falling out of the world
-        if (transform.position.y <= -64f)
+        if (transform.position.y <= respawnDepth)
         {
             GoToStartingPosition();
         }
@@ -84,6 +87,7 @@ public class PlayerMovement : MonoBehaviour, IPlayerMovement
 
         _velocity.y = 0f;
         transform.position = startingPosition;
+        transform.rotation = startingRotation;
         // Debug.Log("I am being Called!");
 
         Invoke("EnableMe", 0.1f);

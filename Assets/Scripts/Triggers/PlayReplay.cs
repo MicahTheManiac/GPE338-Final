@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayReplay : Trigger
@@ -8,6 +9,7 @@ public class PlayReplay : Trigger
     public Transform viewPoint;
 
     private LevelManager _levelManager;
+    private bool _inReplay = false;
 
     // Start is called before the first frame update
     public override void Start()
@@ -15,6 +17,15 @@ public class PlayReplay : Trigger
         if (LevelManager.instance != null)
         {
             _levelManager = LevelManager.instance;
+        }
+    }
+
+    // Update Method to Skip Replay
+    private void Update()
+    {
+        if (Input.GetButtonDown("Jump") && _inReplay)
+        {
+            LoadNextScene();
         }
     }
 
@@ -37,12 +48,15 @@ public class PlayReplay : Trigger
         // If Replay is not null
         if (replay != null)
         {
+            // Set that we are in Replay
+            _inReplay = true;
+
             // Store Replay Length
-            float sec = replay.ReplayGetSeconds();
+            float sec = replay.ReplayGetSeconds() + 3f;
 
             // Start Playback
             replay.ReplayPlayback(true);
-
+ 
             // Invoke Load
             Invoke("LoadNextScene", sec);
 

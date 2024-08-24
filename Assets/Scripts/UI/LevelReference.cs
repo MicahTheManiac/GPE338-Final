@@ -11,7 +11,7 @@ public class LevelReference : ScriptableObject
         if (LevelManager.instance != null)
         {
             LevelManager levelManager = LevelManager.instance;
-            levelManager.LoadScene(levelName);
+            levelManager.GetScene(levelName);
         }
     }
 }

@@ -12,6 +12,6 @@ public class ButtonFunctions : ScriptableObject
 
     public void OpenProjectBoard()
     {
-        Application.OpenURL("https://mthompson84877.weebly.com/colony.html");
+        Application.OpenURL("https://mthompson84877.weebly.com/voxel-parkour.html");
     }
 }

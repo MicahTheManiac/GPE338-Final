@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
+using UnityEditor;
 using UnityEngine;
 
 public class Replay : MonoBehaviour, IReplay
@@ -10,6 +12,8 @@ public class Replay : MonoBehaviour, IReplay
     public KeyCode keyPlay = KeyCode.P;
 
     public GameObject replayObject;
+
+    public GameObject canvas;
 
     // Private
     private float _recordInterval = 0.01f;
@@ -25,6 +29,7 @@ public class Replay : MonoBehaviour, IReplay
     // Update is called once per frame
     void Update()
     {
+        /*  COMMENTED OUT -- FEEL FREE TO CHANGE IF MESSING WITH PROJECT
         // Start Recording
         if (Input.GetKeyDown(keyRecord))
         {
@@ -40,6 +45,7 @@ public class Replay : MonoBehaviour, IReplay
         {
             ReplayPlayback(true);
         }
+        // COMMENT */
 
     }
 
@@ -130,6 +136,7 @@ public class Replay : MonoBehaviour, IReplay
         {
             Vector3 pos = _cache[0];
             GameObject obj = Instantiate(replayObject, pos, Quaternion.identity);
+            canvas.SetActive(true);
 
             Debug.Log("Playing Replay Recording.");
 

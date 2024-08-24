@@ -16,7 +16,7 @@ public class LevelManager : MonoBehaviour
 
     private ObjectPoolManager _pooler;
     private int _currentScene = 0;
-    private int _furthestLevel = 0;
+    private int _furthestLevel = 1;
 
     // Save Data
     private LevelSavaData _saveData;
@@ -59,8 +59,21 @@ public class LevelManager : MonoBehaviour
         // LoadScene("SampleScene");
     }
 
+    // Head to GameStart (Main Menu)
+    private void Update()
+    {
+        if (Input.GetButtonDown("Cancel") && _currentScene != 0)
+        {
+            // Go To Scene 0
+            LoadScene(sceneNames[0]);
+
+            // Unlock Cursor
+            Cursor.lockState = CursorLockMode.None;
+        }
+    }
+
     // Load Scene -- Only Function that should Access SceneManager.LoadScene()
-    public void LoadScene(string name)
+    private void LoadScene(string name)
     {
         for (int i = 0; i < sceneNames.Count; i++)
         {
@@ -79,6 +92,7 @@ public class LevelManager : MonoBehaviour
         }
     }
 
+    /*  PUBLIC FUNCTIONS */
     public void LoadNextScene()
     {
         if (_currentScene < sceneNames.Count - 1)
@@ -96,6 +110,27 @@ public class LevelManager : MonoBehaviour
         else
         {
             Debug.Log("At Last Scene");
+        }
+    }
+
+    public void GetScene(string name)
+    {
+        int index = 0;
+        for (int i = 0; i < sceneNames.Count; i++)
+        {
+            if (name == sceneNames[i])
+            {
+                index = i; break;
+            }
+        }
+
+        if (index > _furthestLevel)
+        {
+            Debug.Log($"Requested Level ({sceneNames[index]}) is more than Furthest.");
+        }
+        else
+        {
+            LoadScene(sceneNames[index]);
         }
     }
 

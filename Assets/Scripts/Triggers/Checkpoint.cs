@@ -19,6 +19,7 @@ public class Checkpoint : Trigger
         if (playerMove != null)
         {
             playerMove.startingPosition = transform.position;
+            playerMove.startingRotation = transform.rotation;
             Debug.Log($"Saved new Starting Position: {playerMove.startingPosition}");
         }
     }

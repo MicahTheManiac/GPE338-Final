@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Dispenser : MonoBehaviour
 {
+    public float fireRate = 1f;
+
     private ObjectPoolManager _pooler;
 
     // Start is called before the first frame update
@@ -15,17 +17,21 @@ public class Dispenser : MonoBehaviour
         }
     }
 
-    float _t = 0f;
+    float _timer = 0f;
 
     // Update is called once per frame
     void Update()
     {
-        _t += Time.deltaTime;
+        _timer += Time.deltaTime;
 
-        if (_t >= 3f)
+        if (_timer >= fireRate)
         {
-            _t = 0f;
-            _pooler.AccessPool(transform.position, transform.rotation);
+            _timer = 0f;
+
+            if (_pooler != null)
+            {
+                _pooler.AccessPool(transform.position, transform.rotation);
+            }
         }
     }
 }
