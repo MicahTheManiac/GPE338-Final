@@ -1,13 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class LayerManager : MonoBehaviour
 {
     public GameObject layerMainMenu;
     public GameObject layerLevelSelect;
-    public GameObject layerCredits;
+    public GameObject layerCredits; // OPTIONS LAYER
     public GameObject sublayerLevelSelectWarning;
+    public GameObject sublayerOptionsMouseSensitivity;
 
     // Start is called before the first frame update
     void Start()
@@ -35,14 +35,21 @@ public class LayerManager : MonoBehaviour
         sublayerLevelSelectWarning.SetActive(false);
     }
 
+    // OPTIONS LAYER
     public void LayerActivateCredits()
     {
         LayerDeactivateAll();
         layerCredits.SetActive(true);
+        sublayerOptionsMouseSensitivity.SetActive(false);
     }
 
     public void SublayerActivateLevelSelectWarning()
     {
         sublayerLevelSelectWarning.SetActive(true);
+    }
+
+    public void SublayerActivateOptionsMouseSensitivity()
+    {
+        sublayerOptionsMouseSensitivity.SetActive(true);
     }
 }

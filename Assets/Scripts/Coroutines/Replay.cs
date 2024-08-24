@@ -16,7 +16,7 @@ public class Replay : MonoBehaviour, IReplay
     public GameObject canvas;
 
     // Private
-    private float _recordInterval = 0.01f;
+    private float _recordInterval = 0.01f; // This is 100FPS
     private List<Vector3> _cache;
     private bool _isRecording = false;
 

@@ -3,11 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
-public class LevelSavaData
-{
-    public int furthestLevel;
-}
+using VoxelParkour;
 
 public class LevelManager : MonoBehaviour
 {
@@ -109,7 +105,8 @@ public class LevelManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("At Last Scene");
+            // To Main Menu
+            LoadScene(sceneNames[0]);
         }
     }
 

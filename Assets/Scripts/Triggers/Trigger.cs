@@ -1,7 +1,7 @@
-using GPE338;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using VoxelParkour;
 
 public abstract class Trigger : MonoBehaviour
 {
