@@ -1,4 +1,4 @@
-**Voxel Parkour**
+# Voxel Parkour
 
 GPE338: Advanced Gameplay Programming
 University of Advancing Technology
